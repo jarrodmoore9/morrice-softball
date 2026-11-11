@@ -1,0 +1,23 @@
+MORRICE SOFTBALL WEBSITE — CONTENT UPDATE REQUEST
+
+I have the Morrice Lady Orioles Softball website created in ChatGPT.
+Please change ONLY data/content.js (unless I specifically request a design or simulator change).
+
+Season: 2027
+
+NEW GAMES / CHANGES:
+
+NEW RESULTS:
+
+ROSTER ADDITIONS / CHANGES (public details only):
+
+NEWS / ANNOUNCEMENTS:
+
+TOOLBOX CHANGES:
+
+RECORDS / HISTORY (verified):
+
+OTHER COPY CHANGES:
+
+Keep the same orange / black Boop bird identity and the working Defense Lab.
+Return just the updated content.js and tell me exactly where to replace it.
