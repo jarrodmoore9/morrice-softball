@@ -165,16 +165,46 @@
   }
 
   function makeField(){
-    const field=`<svg viewBox="0 0 1000 850" id="defenseField" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive softball field. Click a location to place the batted ball.">
-      <defs><pattern id="stripe" width="84" height="84" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><rect width="84" height="84" fill="#213c2b"/><rect width="42" height="84" fill="#1c3427"/></pattern><linearGradient id="infieldDirt" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#7f503a"/><stop offset="1" stop-color="#945b40"/></linearGradient><marker id="orangeArrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M 0 0 L 6 3 L 0 6 z" fill="#f26726"/></marker><marker id="whiteArrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M 0 0 L 6 3 L 0 6 z" fill="#fff9e9"/></marker></defs>
-      <rect x="0" y="0" width="1000" height="850" fill="#121b17"/><path d="M 76 586 Q 140 145 500 58 Q 860 145 924 586 L 500 822 Z" fill="url(#stripe)" stroke="#708c73" stroke-width="3"/>
-      <path d="M 300 540 L 500 340 L 700 540 L 500 741 Z" fill="url(#infieldDirt)" opacity=".92"/><path d="M 500 735 L 685 550 L 500 365 L 315 550 Z" fill="none" stroke="#e8ddc8" stroke-width="4"/>
-      <path d="M 500 735 L 76 586 M 500 735 L 924 586" stroke="#eee9d9" stroke-width="4"/><circle cx="500" cy="562" r="31" fill="#976c53" stroke="#e7c5a8" stroke-width="3"/>
-      <path d="M 74 585 Q 160 240 500 68 Q 840 240 926 585" fill="none" stroke="#e2ede1" stroke-width="5" opacity=".7"/>
-      <g fill="#ffffff" stroke="#a58d71" stroke-width="3"><rect class="field-base" x="676" y="541" width="18" height="18" transform="rotate(45 685 550)"/><rect class="field-base" x="491" y="356" width="18" height="18" transform="rotate(45 500 365)"/><rect class="field-base" x="306" y="541" width="18" height="18" transform="rotate(45 315 550)"/><path d="M 487 729 L 513 729 L 510 742 L 500 749 L 490 742 Z"/></g>
+    // SOFTBALL GEOMETRY: one continuous skinned infield, not a baseball grass diamond.
+    // The white foul lines pass through home → 3B → left-field pole and home → 1B → right-field pole.
+    // Keep the fixed 1000×850 coordinate system so the existing movement and hit locations still match.
+    const field=`<svg viewBox="0 0 1000 850" id="defenseField" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive fastpitch softball field with a full dirt infield, grass outfield, and foul lines extending through first and third base. Tap fair territory to place a batted ball.">
+      <defs>
+        <pattern id="stripe" width="94" height="94" patternUnits="userSpaceOnUse" patternTransform="rotate(37)"><rect width="94" height="94" fill="#214831"/><rect width="47" height="94" fill="#1b402d"/></pattern>
+        <pattern id="dirtGrain" width="48" height="48" patternUnits="userSpaceOnUse"><circle cx="5" cy="11" r="1.3" fill="#f1d3a3" opacity=".17"/><circle cx="30" cy="37" r="1.5" fill="#71482d" opacity=".20"/><circle cx="39" cy="12" r="1" fill="#ecd0a9" opacity=".20"/><circle cx="15" cy="29" r=".9" fill="#623b29" opacity=".13"/></pattern>
+        <linearGradient id="infieldDirt" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#bd8861"/><stop offset=".52" stop-color="#b07950"/><stop offset="1" stop-color="#97613f"/></linearGradient>
+        <linearGradient id="fieldVignette" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#000000" stop-opacity=".05"/><stop offset="1" stop-color="#000000" stop-opacity=".18"/></linearGradient>
+        <clipPath id="softballFairClip"><path d="M 500 735 L 88 323 C 131 165 259 76 500 71 C 741 76 869 165 912 323 Z"/></clipPath>
+        <marker id="orangeArrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M 0 0 L 6 3 L 0 6 z" fill="#f26726"/></marker>
+        <marker id="whiteArrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M 0 0 L 6 3 L 0 6 z" fill="#fff9e9"/></marker>
+      </defs>
+      <rect width="1000" height="850" fill="#111b17"/>
+      <!-- The entire playable wedge is grass first, then a large skinned softball infield. -->
+      <g clip-path="url(#softballFairClip)">
+        <path d="M 500 735 L 88 323 C 131 165 259 76 500 71 C 741 76 869 165 912 323 Z" fill="url(#stripe)"/>
+        <path d="M 500 735 L 158 393 Q 500 140 842 393 Z" fill="url(#infieldDirt)"/>
+        <path d="M 500 735 L 158 393 Q 500 140 842 393 Z" fill="url(#dirtGrain)" opacity=".85"/>
+        <path d="M 158 393 Q 500 140 842 393" fill="none" stroke="#c6a078" stroke-width="4" opacity=".8"/>
+        <path d="M 500 735 L 88 323 C 131 165 259 76 500 71 C 741 76 869 165 912 323 Z" fill="url(#fieldVignette)"/>
+      </g>
+      <!-- Fair/foul boundaries follow the actual home–third and home–first lines. -->
+      <path id="fairTerritoryOutline" d="M 500 735 L 88 323 C 131 165 259 76 500 71 C 741 76 869 165 912 323 Z" fill="none" stroke="#708b71" stroke-width="3"/>
+      <path d="M 500 735 L 88 323 M 500 735 L 912 323" fill="none" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- Foul poles and a soft, subtle fence: visible without fighting player routes. -->
+      <path d="M 88 323 C 131 165 259 76 500 71 C 741 76 869 165 912 323" fill="none" stroke="#d1dfd1" stroke-width="5" opacity=".78"/>
+      <path d="M 88 323 L 88 295 M 912 323 L 912 295" fill="none" stroke="#ff812e" stroke-width="6" stroke-linecap="round"/>
+      <!-- The dirt is continuous: no baseball-style grass square, no chalk lines across second base. -->
+      <circle cx="500" cy="560" r="35" fill="none" stroke="#eed2ae" stroke-width="2.6" stroke-dasharray="7 7" opacity=".92"/>
+      <rect x="487" y="546" width="26" height="6" rx="1" fill="#f8f0dd" opacity=".92"/>
+      <g fill="#ffffff" stroke="#765c47" stroke-width="2.8">
+        <rect class="field-base" x="676" y="541" width="18" height="18" transform="rotate(45 685 550)"/>
+        <rect class="field-base" x="491" y="356" width="18" height="18" transform="rotate(45 500 365)"/>
+        <rect class="field-base" x="306" y="541" width="18" height="18" transform="rotate(45 315 550)"/>
+        <path d="M 487 729 L 513 729 L 510 742 L 500 749 L 490 742 Z"/>
+      </g>
       <g id="runnerLayer"></g><g id="movementLayer"></g><g id="throwLayer"></g><g id="playerLayer"></g><g id="ballLayer"></g>
-      <text x="500" y="28" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="21" letter-spacing="6" fill="#f4f5ec" opacity=".5">MORRICE DEFENSIVE SYSTEM</text>
-      <text x="500" y="835" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="14" letter-spacing="3" fill="#f4f5ec" opacity=".5">TAP THE FIELD TO PLACE THE BALL</text>
+      <text x="500" y="29" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="21" letter-spacing="6" fill="#f4f5ec" opacity=".53">MORRICE DEFENSIVE SYSTEM</text>
+      <text x="500" y="835" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="14" letter-spacing="3" fill="#f4f5ec" opacity=".52">TAP FAIR TERRITORY TO PLACE THE BALL</text>
     </svg>`;
     return field;
   }
@@ -215,7 +245,13 @@
     el('contactType').addEventListener('change',e=>{state.contact=e.target.value;if(state.contact==='bunt'&&!state.spot.startsWith('Bunt:')){state.spot='Bunt: middle';state.ball=clone(spotPresets[state.spot]);el('ballSpot').value=state.spot}refresh()});
     el('ballSpot').addEventListener('change',e=>{state.spot=e.target.value;if(spotPresets[state.spot])state.ball=clone(spotPresets[state.spot]);refresh()});
     el('fielderSelect').addEventListener('change',e=>{state.fielder=e.target.value;refresh()});el('throwSelect').addEventListener('change',e=>{state.throwTo=e.target.value;refresh()});
-    field.addEventListener('click',e=>{if(e.target.closest?.('.fielder'))return;const pt=field.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const local=pt.matrixTransform(field.getScreenCTM().inverse());if(local.x<90||local.x>910||local.y<83||local.y>780)return;state.spot='custom';state.ball={x:clamp(local.x,105,900),y:clamp(local.y,95,780)};el('ballSpot').value='custom';refresh()});
+    field.addEventListener('click',e=>{if(e.target.closest?.('.fielder'))return;const pt=field.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const local=pt.matrixTransform(field.getScreenCTM().inverse());if(local.x<88||local.x>912||local.y<80||local.y>750)return;
+      // Ignore taps outside the two chalk foul lines (i.e. in foul territory).
+      if(local.y>=323 && Math.abs(local.x-500)>735-local.y+5)return;
+      // The upper outfield uses a curved fence. No placement beyond its arc.
+      const fairPath=el('fairTerritoryOutline');
+      if(fairPath && typeof fairPath.isPointInFill==='function' && !fairPath.isPointInFill(local))return;
+      state.spot='custom';state.ball={x:clamp(local.x,105,900),y:clamp(local.y,95,780)};el('ballSpot').value='custom';refresh()});
     el('playBtn').addEventListener('click',animatePlay);
     el('resetBtn').addEventListener('click',()=>{state.runners.clear();state.outs=0;state.contact='ground';state.spot='SS hole';state.ball=clone(spotPresets[state.spot]);state.fielder='AUTO';state.throwTo='AUTO';el('contactType').value=state.contact;el('ballSpot').value=state.spot;el('fielderSelect').value=state.fielder;el('throwSelect').value=state.throwTo;refresh()});
     el('quizBtn').addEventListener('click',()=>{const p=order[Math.floor(Math.random()*order.length)];const panel=el('quizPanel');panel.hidden=false;el('quizQuestion').textContent=`Where should ${p} go on this play—and why?`;el('quizAnswer').textContent='';el('revealAnswer').onclick=()=>{el('quizAnswer').textContent=`${p}: ${state.plan.assignment[p]}`;highlightAssignment(p)};panel.scrollIntoView({block:'nearest',behavior:'smooth'});});
