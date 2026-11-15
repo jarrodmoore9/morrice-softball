@@ -27,6 +27,7 @@
     <section class="section"><div class="max-layout section-intro"><div><div class="eyebrow kicker-line">BUILT ON BATS</div><h2 class="section-heading">THE STANDARD<br/><em>IS THE STANDARD.</em></h2></div><p>${esc(data.programIntroduction)} <br/><br/>Every rep. Every detail. Every person in the flock.</p></div><div class="card-grid">${[
       ['B','BRICK BY BRICK','We build the habits before we chase the results.'],['A','ALL IN','Competitive effort, toughness, and commitment every day.'],['T','THE TOWN','We wear Morrice across our chest for a reason.']
     ].map(([n,t,p])=>`<article class="editorial-card"><div class="top"><span class="card-eyebrow">BATS / ${n}</span><h3>${t}</h3><p>${p}</p></div><div class="card-foot">THE ORIOLE WAY <span>↗</span></div></article>`).join('')}</div><div class="home-s-line"><span>STRENGTH OF THE FLOCK</span><p>We get better together. We win together. We own the standard together.</p></div></section>
+    <section class="hq-home-ad" style="background:#1c211d;padding:48px clamp(20px,6vw,95px);border-block:1px solid #41483e"><div style="max-width:1360px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap"><div><div class="eyebrow kicker-line">THE DIGITAL CLUBHOUSE</div><h2 style="font:900 clamp(44px,5vw,72px)/.9 var(--display);margin:13px 0;text-transform:uppercase">BEYOND THE <span style="color:#f37529">DIAMOND.</span></h2><p style="max-width:660px;color:#bfc8bd">History, gameday, game-IQ quizzes, pitch calls, positional teaching, photos and strength work. Eight tools. One program.</p></div><a class="btn btn-primary" href="#hub">OPEN PROGRAM HQ ↗</a></div></section>
     <section class="showcase"><div class="showcase-copy"><div class="eyebrow kicker-line" style="color:#ab3c13">INTERACTIVE PLAYER DEVELOPMENT</div><h2 class="section-heading">THE<br/><em>DEFENSE</em><br/>LAB.</h2><p class="lede">Put runners on base. Choose the outs. Tap where the ball lands. Watch all nine defenders move—and see the reason behind the decision.</p><p style="font-size:13px;max-width:540px;color:#65635e">A coach-adjustable teaching model based on our defensive priorities, not a substitute for reading the live play.</p>${btn('RUN A PLAY ↗','#lab')}</div><div class="showcase-image"><img src="assets/boop-mono.webp" alt="Morrice Orioles silhouette"/><span class="watermark">READ. REACT.</span></div></section>
     <section class="section"><div class="max-layout section-intro"><div><div class="eyebrow kicker-line">AROUND THE PROGRAM</div><h2 class="section-heading">THE <em>LATEST.</em></h2></div><p>Updates from the dugout, the diamond, and the town.</p></div><div class="card-grid">${(data.announcements||[]).slice(0,3).map((a,i)=>`<article class="editorial-card"><div class="top"><div class="card-eyebrow">${esc(a.category||'Program')} / ${esc(a.date||'')}</div><h3>${esc(a.title)}</h3><p>${esc(a.description||'')}</p></div><div class="card-foot">MORRICE SOFTBALL<span>${String(i+1).padStart(2,'0')}</span></div></article>`).join('')}</div><div style="margin-top:25px">${btn('FOLLOW ON INSTAGRAM ↗',safeLink(data.instagram),'secondary')}</div></section>`;
   }
@@ -58,7 +59,7 @@
   }
   function render(){
     const route=(location.hash.replace(/^#/,'').split('/')[0]||'home');
-    if (!['home','schedule','roster','toolbox','lab','about','records','manage'].includes(route)) {location.hash='#home';return;}
+    if (!['home','schedule','roster','toolbox','lab','about','records','manage','hub','chasing','situation','gameday','vault','pitchlab','flock','playbook','factory'].includes(route)) {location.hash='#home';return;}
     document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.getAttribute('data-nav')===route));
     const menu=document.getElementById('mobileNav');menu.classList.remove('open');document.getElementById('menuToggle').setAttribute('aria-expanded','false');
     document.getElementById('headerIG').href=safeLink(data.instagram);
@@ -70,14 +71,16 @@
     if (route==='toolbox')html=toolbox();
     if (route==='about')html=about();
     if (route==='records')html=records();
+    if (['hub','chasing','situation','gameday','vault','pitchlab','flock','playbook','factory'].includes(route))html=window.MorriceProgram?.render(route,data)||'<p class="empty-state">Program HQ could not load.</p>';
     if (route==='manage')html=manager();
     if (route==='lab')html=window.MorriceDefenseLab?.render()||'<p>Defense Lab could not load.</p>';
     main.innerHTML=html;
     if(route==='lab')window.MorriceDefenseLab?.mount();
     if(route==='records')window.MorriceRecords?.mount();
+    if (['hub','chasing','situation','gameday','vault','pitchlab','flock','playbook','factory'].includes(route))window.MorriceProgram?.mount(route,data);
     if(route==='toolbox')wireToolbox();
     if(route==='manage')wireManager();
-    document.title=`${({home:'Morrice Softball',schedule:'Schedule',roster:'Roster',toolbox:'The Toolbox',lab:'Defense Lab',about:'Our Program',records:'Records',manage:'Manage Content'})[route]} | Morrice Lady Orioles`;
+    document.title=`${({home:'Morrice Softball',schedule:'Schedule',roster:'Roster',toolbox:'The Toolbox',lab:'Defense Lab',about:'Our Program',records:'Records',manage:'Manage Content',hub:'Program HQ',chasing:'Chasing History',situation:'Situation Room',gameday:'Gameday HQ',vault:'The Vault',pitchlab:'The Pitch Lab',flock:'The Flock',playbook:'Player Playbook',factory:'Oriole Factory'})[route]} | Morrice Lady Orioles`;
     if (route!=='toolbox'||!location.hash.includes('/')) window.scrollTo({top:0,behavior:'instant'});
     if(route==='toolbox'&&location.hash.includes('/'))setTimeout(()=>document.getElementById('toolbox-detail')?.scrollIntoView({block:'start'}),80);
   }
