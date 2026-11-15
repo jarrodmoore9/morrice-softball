@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0b0b" />
+  <meta name="description" content="Morrice Lady Orioles Softball — Roots Run Deep. Official-style program site, schedules, roster, Toolbox, and interactive defensive teaching lab and Program HQ with historical records, game IQ quizzes, pitching, workouts and heritage." />
+  <title>Morrice Lady Orioles Softball | Roots Run Deep</title>
+  <link rel="icon" type="image/webp" href="assets/boop.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="records.css" />
+  <link rel="stylesheet" href="program.css" />
+  <script src="data/content.js"></script>
+  <script src="data/records-data.js"></script>
+  <script src="data/program-data.js"></script>
+  <script src="program.js" defer></script>
+  <script src="records.js" defer></script>
+  <script src="defense.js" defer></script>
+  <script src="app.js?v=20261115" defer></script>
+
+  <style>
+    /* Morrice social icons, inline so there are no third-party icon dependencies */
+    .morrice-socials{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+    .morrice-social-link{width:41px;height:41px;display:inline-flex;align-items:center;justify-content:center;color:var(--orange,#f26726);background:#141616;border:1px solid #57514c;border-radius:5px;line-height:1;transition:background-color .18s,border-color .18s,color .18s,transform .18s}
+    .morrice-social-link svg{display:block;width:23px;height:23px;flex-shrink:0}
+    .morrice-social-link:hover{color:#111;background:var(--orange,#f26726);border-color:var(--orange,#f26726);transform:translateY(-2px)}
+    .morrice-social-link:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    .morrice-socials-footer{gap:7px}
+    .footer-bottom .morrice-social-link{color:var(--orange,#f26726);letter-spacing:normal}
+    .footer-bottom .morrice-social-link:hover{color:#111}
+    @media(max-width:480px){
+      .topbar{padding-left:10px;padding-right:10px;gap:7px}
+      .brand{min-width:0;flex-shrink:1;gap:5px}
+      .brand-bird{width:42px;height:42px}
+      .brand-text strong{font-size:24px}
+      .brand-text small{font-size:9px;letter-spacing:.07em}
+      .header-actions{gap:5px;flex-shrink:0}
+      .morrice-socials{gap:5px}
+      .header-actions .morrice-social-link{width:34px;height:34px}
+      .header-actions .morrice-social-link svg{width:20px;height:20px}
+      .mobile-menu-toggle{padding:2px;font-size:23px}
+    }
+    @media(prefers-reduced-motion:reduce){.morrice-social-link{transition:none}.morrice-social-link:hover{transform:none}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Morrice Softball home">
+        <img class="brand-bird" src="assets/boop.webp" alt="" />
+        <span class="brand-text"><strong>MORRICE</strong><small>LADY ORIOLES SOFTBALL</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#schedule" data-nav="schedule">Schedule</a>
+        <a href="#roster" data-nav="roster">Roster</a>
+        <a href="#toolbox" data-nav="toolbox">The Toolbox</a>
+        <a href="#records" data-nav="records">Records</a>
+        <a href="#hub" data-nav="hub">Program HQ</a>
+        <a class="nav-lab" href="#lab" data-nav="lab"><span class="nav-live-dot"></span> Defense Lab</a>
+      </nav>
+      <div class="header-actions">
+        <nav class="morrice-socials" aria-label="Morrice softball social media"><a class="morrice-social-link" id="headerIG" href="https://www.instagram.com/morriceoriolessoftball/" target="_blank" rel="noopener noreferrer" aria-label="Morrice Lady Orioles Softball on Instagram" title="Follow us on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.3"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.9" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg></a><a class="morrice-social-link" id="headerFB" href="https://www.facebook.com/people/Morrice-Lady-Oriole-Softball/61574977748486/" target="_blank" rel="noopener noreferrer" aria-label="Morrice Lady Orioles Softball on Facebook" title="Follow us on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16.52 3.1h-2.43c-2.68 0-4.41 1.81-4.41 4.61v2.11H7.12v3.53h2.56v7.82h3.87v-7.82h2.76l.44-3.53h-3.2V8.09c0-.97.33-1.44 1.37-1.44h1.6V3.1z"/></svg></a></nav>
+        <button class="mobile-menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="#home">Home</a><a href="#schedule">Schedule</a><a href="#roster">Roster</a><a href="#toolbox">The Toolbox</a><a href="#lab">Defense Lab</a><a href="#records">Records</a><a href="#hub">Program HQ</a><a href="#situation">Situation Room</a><a href="#chasing">Chasing History</a><a href="#about">About</a>
+      </nav>
+    </header>
+    <main id="main" tabindex="-1"><noscript><p style="padding:3rem;color:white">Please enable JavaScript to view this site and use the interactive defense lab.</p></noscript></main>
+    <footer class="site-footer">
+      <div class="footer-top"><img src="assets/boop-mono.webp" alt="" /><div><strong>FOR MORRICE.</strong><span>Brick by Brick. All In. The Town. Strength of the Flock.</span></div><a href="#lab" class="text-link">OPEN THE DEFENSE LAB ↗</a></div>
+      <div class="footer-bottom"><span>© <span id="copyrightYear">2027</span> MORRICE LADY ORIOLES SOFTBALL</span><div><a href="#records">Records</a><a href="#hub">Program HQ</a><a href="#about">Our program</a><a href="#manage">Manage content</a><nav class="morrice-socials morrice-socials-footer" aria-label="Follow Morrice softball"><a class="morrice-social-link" id="footerIG" href="https://www.instagram.com/morriceoriolessoftball/" target="_blank" rel="noopener noreferrer" aria-label="Morrice Lady Orioles Softball on Instagram" title="Follow us on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.3"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.9" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg></a><a class="morrice-social-link" id="footerFB" href="https://www.facebook.com/people/Morrice-Lady-Oriole-Softball/61574977748486/" target="_blank" rel="noopener noreferrer" aria-label="Morrice Lady Orioles Softball on Facebook" title="Follow us on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16.52 3.1h-2.43c-2.68 0-4.41 1.81-4.41 4.61v2.11H7.12v3.53h2.56v7.82h3.87v-7.82h2.76l.44-3.53h-3.2V8.09c0-.97.33-1.44 1.37-1.44h1.6V3.1z"/></svg></a></nav></div></div>
+      <p class="footer-note">Unofficial team-built site preview. School-approved content and publication permissions should be confirmed before launch.</p>
+    </footer>
+  </div>
+</body>
+</html>
