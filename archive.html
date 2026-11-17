@@ -12,9 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="archive.css" rel="stylesheet">
   <script src="data/records-data.js"></script>
-  <!-- Versioned URL prevents browsers from reusing the previously cached, incorrect photo paths. -->
-  <script src="data/history-data.js?v=20261117-caption-player-links" ></script>
-  <script src="archive.js?v=20261117-caption-player-links" defer></script>
+  <script src="data/history-data.js?v=20261117-history-v4"></script>
+  <!-- Load all photo and roster connections BEFORE archive.js builds the searchable player index. -->
+  <script src="data/morrice-history-update.js?v=20261117-history-v4"></script>
+  <script src="archive.js?v=20261117-history-v4" defer></script>
 </head>
 <body>
   <a class="skip" href="#archive-main">Skip to archive</a>
