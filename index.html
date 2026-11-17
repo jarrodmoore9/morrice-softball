@@ -45,6 +45,14 @@
     }
     @media(prefers-reduced-motion:reduce){.morrice-social-link{transition:none}.morrice-social-link:hover{transform:none}}
   </style>
+
+  <style>
+    .ath-records-bridge{display:flex;align-items:center;justify-content:space-between;gap:17px;flex-wrap:wrap;padding:20px 23px;margin:22px 0 27px;background:#20211e;border:1px solid #4f4236;border-left:5px solid #f26726}
+    .ath-records-bridge strong{display:block;font:900 29px 'Barlow Condensed',Impact,sans-serif;line-height:1;text-transform:uppercase;color:#fff}
+    .ath-records-bridge p{font-size:13px;color:#c9c8c2;margin:7px 0 0}
+    .ath-records-bridge a{display:inline-block;background:#f26726;color:#111;font:900 17px 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.05em;padding:12px 16px;white-space:nowrap}
+    .ath-records-bridge a:hover{background:#ff8947}
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -68,15 +76,35 @@
         <button class="mobile-menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
       </div>
       <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-        <a href="#home">Home</a><a href="#schedule">Schedule</a><a href="#roster">Roster</a><a href="#toolbox">The Toolbox</a><a href="#lab">Defense Lab</a><a href="#records">Records</a><a href="#hub">Program HQ</a><a href="#situation">Situation Room</a><a href="#chasing">Chasing History</a><a href="#about">About</a>
+        <a href="#home">Home</a><a href="#schedule">Schedule</a><a href="#roster">Roster</a><a href="#toolbox">The Toolbox</a><a href="#lab">Defense Lab</a><a href="#records">Records</a><a href="archive.html">All-Time Orioles</a><a href="#hub">Program HQ</a><a href="#situation">Situation Room</a><a href="#chasing">Chasing History</a><a href="#about">About</a>
       </nav>
     </header>
     <main id="main" tabindex="-1"><noscript><p style="padding:3rem;color:white">Please enable JavaScript to view this site and use the interactive defense lab.</p></noscript></main>
     <footer class="site-footer">
       <div class="footer-top"><img src="assets/boop-mono.webp" alt="" /><div><strong>FOR MORRICE.</strong><span>Brick by Brick. All In. The Town. Strength of the Flock.</span></div><a href="#lab" class="text-link">OPEN THE DEFENSE LAB ↗</a></div>
-      <div class="footer-bottom"><span>© <span id="copyrightYear">2027</span> MORRICE LADY ORIOLES SOFTBALL</span><div><a href="#records">Records</a><a href="#hub">Program HQ</a><a href="#about">Our program</a><a href="#manage">Manage content</a><nav class="morrice-socials morrice-socials-footer" aria-label="Follow Morrice softball"><a class="morrice-social-link" id="footerIG" href="https://www.instagram.com/morriceoriolessoftball/" target="_blank" rel="noopener noreferrer" aria-label="Morrice Lady Orioles Softball on Instagram" title="Follow us on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.3"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.9" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg></a><a class="morrice-social-link" id="footerFB" href="https://www.facebook.com/people/Morrice-Lady-Oriole-Softball/61574977748486/" target="_blank" rel="noopener noreferrer" aria-label="Morrice Lady Orioles Softball on Facebook" title="Follow us on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16.52 3.1h-2.43c-2.68 0-4.41 1.81-4.41 4.61v2.11H7.12v3.53h2.56v7.82h3.87v-7.82h2.76l.44-3.53h-3.2V8.09c0-.97.33-1.44 1.37-1.44h1.6V3.1z"/></svg></a></nav></div></div>
+      <div class="footer-bottom"><span>© <span id="copyrightYear">2027</span> MORRICE LADY ORIOLES SOFTBALL</span><div><a href="#records">Records</a><a href="archive.html">All-Time Orioles</a><a href="#hub">Program HQ</a><a href="#about">Our program</a><a href="#manage">Manage content</a><nav class="morrice-socials morrice-socials-footer" aria-label="Follow Morrice softball"><a class="morrice-social-link" id="footerIG" href="https://www.instagram.com/morriceoriolessoftball/" target="_blank" rel="noopener noreferrer" aria-label="Morrice Lady Orioles Softball on Instagram" title="Follow us on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.3"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.9" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg></a><a class="morrice-social-link" id="footerFB" href="https://www.facebook.com/people/Morrice-Lady-Oriole-Softball/61574977748486/" target="_blank" rel="noopener noreferrer" aria-label="Morrice Lady Orioles Softball on Facebook" title="Follow us on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16.52 3.1h-2.43c-2.68 0-4.41 1.81-4.41 4.61v2.11H7.12v3.53h2.56v7.82h3.87v-7.82h2.76l.44-3.53h-3.2V8.09c0-.97.33-1.44 1.37-1.44h1.6V3.1z"/></svg></a></nav></div></div>
       <p class="footer-note">Unofficial team-built site preview. School-approved content and publication permissions should be confirmed before launch.</p>
     </footer>
   </div>
+
+  <script>
+    /* Link the independent All-Time Orioles archive from every Records view.
+       No change to the statistical records engine or auto-importer is needed. */
+    (()=>{
+      const main=document.getElementById('main');
+      if(!main||!window.MutationObserver)return;
+      const add=()=>{
+        const layout=main.querySelector('#morrice-records .ra-layout');
+        if(!layout||layout.querySelector('.ath-records-bridge'))return;
+        const bridge=document.createElement('div');
+        bridge.className='ath-records-bridge';
+        bridge.innerHTML='<div><strong>YOUR NAME. YOUR TEAM. YOUR ERA.</strong><p>Search the All-Time Orioles player archive, season histories, yearbook photos, and game results.</p></div><a href="archive.html">EXPLORE THE ALL-TIME ORIOLES ↗</a>';
+        const live=layout.querySelector('#ra-live');
+        if(live)layout.insertBefore(bridge,live);else layout.appendChild(bridge);
+      };
+      new MutationObserver(add).observe(main,{childList:true,subtree:true});
+      add();
+    })();
+  </script>
 </body>
 </html>
