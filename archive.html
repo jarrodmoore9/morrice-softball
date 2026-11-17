@@ -16,6 +16,38 @@
   <!-- Load all photo and roster connections BEFORE archive.js builds the searchable player index. -->
   <script src="data/morrice-history-update.js?v=20261117-history-v4"></script>
   <script src="archive.js?v=20261117-history-v4" defer></script>
+  <style>
+    /* Alumni correction desk: scoped to the independent All-Time Orioles archive. */
+    .ath-legacy{background:#101312;color:#f3f3ed;border-top:1px solid #3b342f;border-bottom:1px solid #3b342f;padding:clamp(34px,5vw,68px) 20px}
+    .ath-legacy *{box-sizing:border-box}
+    .ath-legacy-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,0.98fr);gap:clamp(24px,5vw,68px);align-items:start}
+    .ath-legacy-eyebrow{color:#fb833c;text-transform:uppercase;font:800 13px 'DM Sans',sans-serif;letter-spacing:.14em;margin:0 0 14px}
+    .ath-legacy h2{font:900 clamp(39px,5.8vw,72px)/.94 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:-.016em;color:#fff;margin:0 0 20px}
+    .ath-legacy h2 em{font-style:normal;color:#fb833c}
+    .ath-legacy-intro{font:400 16px/1.75 'DM Sans',sans-serif;color:#d3d2cb;margin:0 0 20px;max-width:550px}
+    .ath-legacy-highlights{display:grid;gap:11px;margin:24px 0 0;padding:0;list-style:none}
+    .ath-legacy-highlights li{border-left:3px solid #f57b35;padding:4px 0 4px 14px;color:#f0eee9;font:500 14px/1.6 'DM Sans',sans-serif}
+    .ath-legacy-card{background:#1b201d;border:1px solid #554a40;border-radius:5px;padding:clamp(20px,3vw,30px)}
+    .ath-legacy-card h3{font:900 28px/1.05 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;color:#fff;margin:0 0 8px}
+    .ath-legacy-card>p{font:400 13px/1.6 'DM Sans',sans-serif;color:#b9bbb3;margin:0 0 21px}
+    .ath-legacy-form{display:grid;gap:15px}
+    .ath-legacy-field{display:grid;gap:6px}
+    .ath-legacy-field label{color:#f2f0e9;font:700 12px 'DM Sans',sans-serif;letter-spacing:.01em}
+    .ath-legacy-field input,.ath-legacy-field select,.ath-legacy-field textarea{width:100%;background:#0e100f;border:1px solid #6b6962;color:#fff;padding:12px 13px;border-radius:3px;font:400 14px/1.5 'DM Sans',sans-serif;min-width:0}
+    .ath-legacy-field textarea{resize:vertical;min-height:118px}
+    .ath-legacy-field input:focus-visible,.ath-legacy-field select:focus-visible,.ath-legacy-field textarea:focus-visible,.ath-legacy-action:focus-visible{outline:2px solid #ffab72;outline-offset:3px}
+    .ath-legacy-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:2px}
+    .ath-legacy-action{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 15px;text-decoration:none!important;border-radius:3px;border:1px solid #f57b35;font:900 15px/1 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;min-height:44px}
+    .ath-legacy-action.primary{background:#f57b35;color:#16120e}
+    .ath-legacy-action.secondary{background:transparent;color:#f9eee6}
+    .ath-legacy-action.primary:hover{background:#ff9a5c}
+    .ath-legacy-action.secondary:hover{background:#372820}
+    .ath-legacy-status{font:500 13px/1.6 'DM Sans',sans-serif;color:#f9c29c;min-height:20px;margin:0}
+    .ath-legacy-small{font:400 12px/1.65 'DM Sans',sans-serif;color:#aeb0aa;margin:0}
+    @media(max-width:790px){.ath-legacy-inner{grid-template-columns:1fr}.ath-legacy-card{max-width:650px}}
+    @media(max-width:420px){.ath-legacy-actions{display:grid}.ath-legacy-action{width:100%}}
+    @media(prefers-reduced-motion:reduce){.ath-legacy-action{transition:none}}
+  </style>
 </head>
 <body>
   <a class="skip" href="#archive-main">Skip to archive</a>
@@ -36,6 +68,98 @@
     </nav>
   </header>
   <main id="archive-main" tabindex="-1"><section class="ath-container ath-loading"><h1>LOADING THE ARCHIVE.</h1><p>Retrieving historical rosters, yearbook pages and season records...</p></section></main>
+  <!-- Visible on archive home, season, and player pages: alumni correction desk. -->
+  <section class="ath-legacy" id="history-corrections" aria-labelledby="ath-legacy-title">
+    <div class="ath-legacy-inner">
+      <div>
+        <p class="ath-legacy-eyebrow">For Morrice / The history belongs to all of us</p>
+        <h2 id="ath-legacy-title">Help us preserve <em>our history.</em></h2>
+        <p class="ath-legacy-intro">Every name, every team, every season matters. We're building this archive from Morrice yearbooks and historical records, and there's still more to discover. Former Orioles and families: help us make it accurate and complete.</p>
+        <ul class="ath-legacy-highlights">
+          <li>Spot a misspelled name or an athlete missing from a roster?</li>
+          <li>Know a season, score, or photograph that needs correcting?</li>
+          <li>Have another yearbook page, team photo, or program memory to share?</li>
+        </ul>
+        <p class="ath-legacy-intro" style="font-size:13px;margin-top:24px">Please include the season and where you found the issue. We'll review corrections against the available sources before updating the archive.</p>
+      </div>
+      <div class="ath-legacy-card">
+        <h3>Send a historical correction</h3>
+        <p>Fill in the details, copy your note, then message the Morrice softball program on Instagram. You can attach photographs in your message.</p>
+        <form class="ath-legacy-form" id="ath-legacy-form">
+          <div class="ath-legacy-field">
+            <label for="ath-legacy-year">Season or approximate year</label>
+            <input id="ath-legacy-year" type="text" maxlength="50" placeholder="e.g., 2003 or early 1980s" autocomplete="off">
+          </div>
+          <div class="ath-legacy-field">
+            <label for="ath-legacy-type">What would you like to share?</label>
+            <select id="ath-legacy-type">
+              <option>Incorrect or misspelled name</option>
+              <option>Missing player or teammate</option>
+              <option>Incorrect season or score</option>
+              <option>Additional photograph or yearbook</option>
+              <option>Another historical correction or memory</option>
+            </select>
+          </div>
+          <div class="ath-legacy-field">
+            <label for="ath-legacy-details">Details</label>
+            <textarea id="ath-legacy-details" maxlength="2500" required placeholder="Tell us which player, season, or photo and what should be changed."></textarea>
+          </div>
+          <div class="ath-legacy-field">
+            <label for="ath-legacy-name">Your name (optional)</label>
+            <input id="ath-legacy-name" type="text" maxlength="90" placeholder="How should we address you?" autocomplete="name">
+          </div>
+          <div class="ath-legacy-actions">
+            <button class="ath-legacy-action primary" type="submit">Copy correction note</button>
+            <a class="ath-legacy-action secondary" href="https://www.instagram.com/morriceoriolessoftball/" target="_blank" rel="noopener noreferrer">Open Instagram ↗</a>
+          </div>
+          <p class="ath-legacy-status" id="ath-legacy-status" role="status" aria-live="polite"></p>
+          <p class="ath-legacy-small">This page does not submit or store your information. Copy the note, open Instagram, and paste it into a message to <strong>@morriceoriolessoftball</strong>. Avoid sending private student information.</p>
+          <div class="ath-legacy-field" id="ath-legacy-manual-wrap" hidden>
+            <label for="ath-legacy-manual">Your note — select and copy if automatic copying is blocked</label>
+            <textarea id="ath-legacy-manual" readonly></textarea>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
   <footer class="ath-footer"><div><img src="assets/boop-mono.webp" alt=""><p><strong>FOR MORRICE.</strong><span>Every name has a story. Roots run deep.</span></p></div><nav aria-label="Footer"><a href="index.html#records">Statistical Records</a><a href="#seasons">All Seasons</a><a href="#players">Former Players</a><a href="index.html#hub">Program HQ</a></nav><small>Historical materials are being transcribed and verified. Not all rosters, scores or photos are complete. Photo scans supplied from Morrice yearbooks. © Morrice Softball.</small></footer>
+  <script>
+    (() => {
+      'use strict';
+      const form = document.getElementById('ath-legacy-form');
+      if (!form) return;
+      const get = id => document.getElementById(id);
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const details = get('ath-legacy-details').value.trim();
+        const status = get('ath-legacy-status');
+        if (!details) {
+          status.textContent = 'Please describe the correction or memory first.';
+          get('ath-legacy-details').focus();
+          return;
+        }
+        const season = get('ath-legacy-year').value.trim() || 'Not sure';
+        const name = get('ath-legacy-name').value.trim();
+        const type = get('ath-legacy-type').value;
+        const msg = ['MORRICE SOFTBALL ARCHIVE / HISTORY SUBMISSION',
+          'Season: ' + season, 'Topic: ' + type,
+          'Details: ' + details, ...(name ? ['From: ' + name] : [])].join('\n');
+        const manualWrap = get('ath-legacy-manual-wrap');
+        const manual = get('ath-legacy-manual');
+        try {
+          if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+          await navigator.clipboard.writeText(msg);
+          manualWrap.hidden = true;
+          status.textContent = 'Copied! Now open Instagram and paste this note into a message to @morriceoriolessoftball.';
+        } catch (error) {
+          manual.value = msg;
+          manualWrap.hidden = false;
+          manual.focus();
+          manual.select();
+          status.textContent = 'Automatic copying is unavailable here. Copy the selected note below, then send it to us on Instagram.';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
